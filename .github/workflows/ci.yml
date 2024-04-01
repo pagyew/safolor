@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: 16.x
 
+      - name: Setup
+        run: npm i -g @antfu/ni
+
       - name: Install
         run: nci
 
@@ -33,6 +36,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
+
+      - name: Setup
+        run: npm i -g @antfu/ni
 
       - name: Install
         run: nci
@@ -55,6 +61,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+
+      - name: Setup
+        run: npm i -g @antfu/ni
 
       - name: Install
         run: nci

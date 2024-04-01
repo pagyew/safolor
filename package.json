@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "packageManager": "npm@10.2.4",
-  "description": "Convert color to 8-bit web-safe color",
+  "description": "Convert colors to 8-bit web-safe colors",
   "author": "Vladislav Tsepilov <fickleprogger@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/pagyew/safolor#readme",
