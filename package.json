@@ -1,0 +1,65 @@
+{
+  "name": "safolor",
+  "type": "module",
+  "version": "0.1.0",
+  "packageManager": "npm@10.2.4",
+  "description": "Convert color to 8-bit web-safe color",
+  "author": "Vladislav Tsepilov <fickleprogger@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/pagyew/safolor#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pagyew/safolor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pagyew/safolor/issues"
+  },
+  "keywords": [
+    "colors",
+    "web-safe",
+    "converter",
+    "utils"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "nr build --watch",
+    "lint": "eslint .",
+    "lint-fix": "nr lint --fix",
+    "prepublishOnly": "npm run build",
+    "release": "bumpp --commit --push --tag && npm publish",
+    "start": "esno src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.11.6",
+    "@antfu/ni": "^0.21.12",
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@types/node": "^20.12.2",
+    "bumpp": "^9.4.0",
+    "eslint": "^8.57.0",
+    "esno": "^4.7.0",
+    "rollup": "^4.13.2",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-esbuild": "^6.1.1",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.7",
+    "vitest": "^1.4.0"
+  }
+}
