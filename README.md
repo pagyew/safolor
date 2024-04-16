@@ -1,6 +1,6 @@
 # @pagyew/safolor
 
-[![NPM version](https://img.shields.io/npm/v/@pagyew/safolor?color=a1b858&label=)](https://www.npmjs.com/package/@pagyew/safolor)
+[![NPM version](https://img.shields.io/npm/v/@pagyew/safolor)](https://www.npmjs.com/package/@pagyew/safolor)
 
 Convert colors to 8-bit web-safe colors
 
