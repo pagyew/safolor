@@ -1,7 +1,7 @@
 {
   "name": "@pagyew/safolor",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "packageManager": "npm@10.2.4",
   "description": "Convert colors to 8-bit web-safe colors",
   "author": "Vladislav Tsepilov <fickleprogger@gmail.com>",
