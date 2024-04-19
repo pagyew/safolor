@@ -1,25 +1,46 @@
-export type HEX = `#${string}`
+import { intToHex, parse, safe } from './helpers'
+import type { HEX, RGB, RGBA, RGBObject, Safolor } from './types'
 
-export function safolor(color: HEX): HEX {
-  if (typeof color !== 'string')
-    throw new TypeError('Expected a string')
+export const safolor: Safolor = (() => {
+  let color: RGBObject
+  let safeColor: RGBObject
 
-  const hex = color.match(
-    /^#(?:([\da-f]{2})([\da-f]{2})([\da-f]{2})([\da-f]{2})?|([\da-f]{1})([\da-f]{1})([\da-f]{1})([\da-f]{1})?)$/i,
-  )
+  function exec(original: string) {
+    color = parse(original)
+    safeColor = safe(color)
+  }
 
-  if (hex === null)
-    throw new SyntaxError('Expected a HEX format')
+  function hex(color: HEX): HEX
+  function hex(color: RGB | RGBA): HEX
+  function hex(color: string): HEX {
+    exec(color)
+    const { r, g, b } = safeColor
+    return `#${intToHex(r)}${intToHex(g)}${intToHex(b)}`
+  }
 
-  const [_, rr, gg, bb, __, r, g, b, ___] = hex
+  function rgb(color: HEX): RGB
+  function rgb(color: RGB | RGBA): RGB
+  function rgb(color: string): RGB {
+    const { r, g, b } = call.rgbObj(color as any)
+    return `rgb(${r}, ${g}, ${b})`
+  }
 
-  const R = rr || r.padEnd(2, r)
-  const G = gg || g.padEnd(2, g)
-  const B = bb || b.padEnd(2, b)
+  function rgbObj(color: HEX): RGBObject
+  function rgbObj(color: RGB | RGBA): RGBObject
+  function rgbObj(color: string): RGBObject {
+    exec(color)
+    return safeColor
+  }
 
-  const nR = (Math.round(Number.parseInt(R, 16) / 51) * 51).toString(16)
-  const nG = (Math.round(Number.parseInt(G, 16) / 51) * 51).toString(16)
-  const nB = (Math.round(Number.parseInt(B, 16) / 51) * 51).toString(16)
+  function call(color: HEX): HEX
+  function call(color: RGB | RGBA): HEX
+  function call(color: string): HEX {
+    return call.hex(color as any)
+  }
 
-  return `#${nR.padEnd(2, nR)}${nG.padEnd(2, nG)}${nB.padEnd(2, nB)}`
-}
+  call.hex = hex
+  call.rgb = rgb
+  call.rgbObj = rgbObj
+
+  return call
+})()
