@@ -10,6 +10,47 @@ Convert colors to 8-bit web-safe colors
 
 > This package is designed to be used as `devDependencies` and bundled into your dist.
 
+## Installation
+
+```
+npm i @pagyew/safolor
+```
+
+## Usage
+
+```ts
+import { safolor } from '@pagyew/safolor'
+```
+
+### `safolor(color: HEX | RGB): HEX`
+
+Shortcut for `safolor.hex()`
+
+### `.hex(color: HEX | RGB): HEX`
+
+Accepts a color in HEX or RGB format and returns a safecolor in HEX format
+
+```ts
+safolor.hex('#123456') // #003366
+```
+
+### `.rgb(color: HEX | RGB): RGB`
+
+Accepts a color in HEX or RGB format and returns a safecolor in RGB format
+
+```ts
+safolor.rgb('#123456') // rgb(0, 51, 102)
+```
+
+### `.rgbObj(color: HEX | RGB): RGBObject`
+
+Accepts a color in HEX or RGB format and returns a safecolor's values in RGB object
+
+```ts
+safolor.rgbObj('#123456') // { r: 0, g: 51, b: 102 }
+```
+
+## License
 [MIT](./LICENSE) License © 2024-PRESENT [Vladislav Tsepilov](https://github.com/pagyew)
 
 <!-- Badges -->
