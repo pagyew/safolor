@@ -1,67 +1,72 @@
-# @pagyew/safolor
+<div align="center">
+  <h1>safolor</h1>
+  <p><strong>Turn a CSS color into its nearest web-safe neighbor.</strong></p>
+  <p>
+    <img src="https://img.shields.io/badge/TypeScript-typed-3178c6?style=flat-square" alt="TypeScript: typed" />
+    <img src="https://img.shields.io/badge/palette-216%20colors-669999?style=flat-square" alt="palette: 216 colors" />
+    <img src="https://img.shields.io/badge/license-MIT-0f766e?style=flat-square" alt="license: MIT" />
+  </p>
+  <p><a href="#installation">Install</a> · <a href="#api">API</a> · <a href="#development">Development</a> · <a href="https://www.npmjs.com/package/@pagyew/safolor">npm</a></p>
+</div>
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![bundle][bundle-src]][bundle-href]
-[![JSDocs][jsdocs-src]][jsdocs-href]
-[![License][license-src]][license-href]
+---
 
-Convert colors to 8-bit web-safe colors
+A small color utility that rounds each RGB channel to the nearest multiple of 51. The result belongs to the classic **216-color web-safe palette**.
 
-> This package is designed to be used as `devDependencies` and bundled into your dist.
+Accepts HEX, RGB, and RGBA strings and returns a HEX string, an RGB string, or an RGB object. Type definitions, ESM, and CommonJS entry points are included.
 
 ## Installation
 
+```sh
+npm install --save-dev @pagyew/safolor
 ```
-npm i @pagyew/safolor
-```
+
+The package is intended to be bundled into your distribution. If your application imports it directly at runtime without bundling, install it as a regular dependency instead.
 
 ## Usage
 
 ```ts
-import { safolor } from '@pagyew/safolor'
+import { safolor } from "@pagyew/safolor";
+
+safolor("#123456"); // '#003366'
+safolor.hex("#123456"); // '#003366'
+safolor.rgb("#123456"); // 'rgb(0, 51, 102)'
+safolor.rgbObj("#123456"); // { r: 0, g: 51, b: 102 }
 ```
 
-### `safolor(color: HEX | RGB): HEX`
+## API
 
-Shortcut for `safolor.hex()`
+| Call                    | Returns                                   |
+| ----------------------- | ----------------------------------------- |
+| `safolor(color)`        | HEX; shortcut for `safolor.hex(color)`    |
+| `safolor.hex(color)`    | A six-digit HEX color                     |
+| `safolor.rgb(color)`    | An `rgb(r, g, b)` string                  |
+| `safolor.rgbObj(color)` | An object with `r`, `g`, and `b` channels |
 
-### `.hex(color: HEX | RGB): HEX`
+Supported inputs include 3-, 4-, 6-, and 8-digit HEX values and legacy or modern `rgb()` / `rgba()` syntax, including percentage channels. Alpha can be parsed but is **not preserved** in the output. Named colors and HSL are not supported.
 
-Accepts a color in HEX or RGB format and returns a safecolor in HEX format
+Non-string inputs throw `TypeError`; invalid or unsupported color strings throw `SyntaxError`.
 
-```ts
-safolor.hex('#123456') // #003366
+## Development
+
+```sh
+git clone https://github.com/pagyew/safolor.git
+cd safolor
+npm ci
+npm run test -- --run
+npm run typecheck
+npm run lint
+npm run build
 ```
 
-### `.rgb(color: HEX | RGB): RGB`
+Implementation: [src/safolor.ts](src/safolor.ts). Parsing and channel rounding: [src/helpers.ts](src/helpers.ts). Examples and edge cases: [src/safolor.test.ts](src/safolor.test.ts).
 
-Accepts a color in HEX or RGB format and returns a safecolor in RGB format
+## Links
 
-```ts
-safolor.rgb('#123456') // rgb(0, 51, 102)
-```
-
-### `.rgbObj(color: HEX | RGB): RGBObject`
-
-Accepts a color in HEX or RGB format and returns a safecolor's values in RGB object
-
-```ts
-safolor.rgbObj('#123456') // { r: 0, g: 51, b: 102 }
-```
+[npm package](https://www.npmjs.com/package/@pagyew/safolor) · [API reference](https://www.jsdocs.io/package/@pagyew/safolor) · [Bundle size](https://bundlephobia.com/result?p=@pagyew/safolor)
 
 ## License
-[MIT](./LICENSE) License © 2024-PRESENT [Vladislav Tsepilov](https://github.com/pagyew)
 
-<!-- Badges -->
+[MIT](LICENSE). See the license file for the original copyright notice.
 
-[npm-version-src]: https://img.shields.io/npm/v/@pagyew/safolor?style=flat&colorA=000033&colorB=6699cc
-[npm-version-href]: https://npmjs.com/package/@pagyew/safolor
-[npm-downloads-src]: https://img.shields.io/npm/dm/@pagyew/safolor?style=flat&colorA=003300&colorB=99cc66
-[npm-downloads-href]: https://npmjs.com/package/@pagyew/safolor
-[bundle-src]: https://img.shields.io/bundlephobia/minzip/@pagyew/safolor?style=flat&colorA=330000&colorB=cc6699&label=minzip
-[bundle-href]: https://bundlephobia.com/result?p=@pagyew/safolor
-[jsdocs-src]: https://img.shields.io/badge/jsdocs-reference-080f12?style=flat&colorA=003333&colorB=669999
-[jsdocs-href]: https://www.jsdocs.io/package/@pagyew/safolor
-[license-src]: https://img.shields.io/github/license/pagyew/safolor.svg?style=flat&colorA=333300&colorB=999966
-[license-href]: https://github.com/pagyew/safolor/blob/main/LICENSE
+<!-- Сообщение сформировано агентом -->
