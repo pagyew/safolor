@@ -26,12 +26,12 @@ The package is intended to be bundled into your distribution. If your applicatio
 ## Usage
 
 ```ts
-import { safolor } from "@pagyew/safolor";
+import { safolor } from '@pagyew/safolor'
 
-safolor("#123456"); // '#003366'
-safolor.hex("#123456"); // '#003366'
-safolor.rgb("#123456"); // 'rgb(0, 51, 102)'
-safolor.rgbObj("#123456"); // { r: 0, g: 51, b: 102 }
+safolor('#123456') // '#003366'
+safolor.hex('#123456') // '#003366'
+safolor.rgb('#123456') // 'rgb(0, 51, 102)'
+safolor.rgbObj('#123456') // { r: 0, g: 51, b: 102 }
 ```
 
 ## API
